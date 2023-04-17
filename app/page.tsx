@@ -1,12 +1,11 @@
-import Page from "./terminal/page";
+import React from 'react';
 
 const Home = () => {
   return (
     <div>
       <h1>oinori tracker.</h1>
-      <Page />
     </div>
   );
 };
 
-export default Page;
+export default Home;
