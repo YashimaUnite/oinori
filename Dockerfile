@@ -1,8 +1,8 @@
 FROM node:16 AS build
 ADD . /app
 WORKDIR /app
-RUN yarn install --production=false
-RUN yarn build
+RUN npm install --production=false
+RUN next build
 
 FROM gcr.io/distroless/nodejs:16
 WORKDIR /app

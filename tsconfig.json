@@ -1,16 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ES2021",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
-    ],
-    "types": [
-      "next",
-      "react",
-      "node",
-      "jest"
     ],
     "allowJs": true,
     "skipLibCheck": true,
