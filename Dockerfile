@@ -2,7 +2,7 @@ FROM node:16 AS build
 ADD . /app
 WORKDIR /app
 RUN npm install --production=false
-RUN next build
+RUN npm run build
 
 FROM gcr.io/distroless/nodejs:16
 WORKDIR /app
