@@ -76,10 +76,10 @@ const nLaneInstance = new NLane({
 });
 /* harmony default export */ const terminal_NLane = (nLaneInstance);
 
-// EXTERNAL MODULE: ./pages/Page.module.css
+// EXTERNAL MODULE: ./pages/Terminal.module.css
 var TerminalUI_module = __webpack_require__(802);
 var TerminalUI_module_default = /*#__PURE__*/__webpack_require__.n(TerminalUI_module);
-;// CONCATENATED MODULE: ./pages/Page.tsx
+;// CONCATENATED MODULE: ./pages/Terminal.tsx
 
 
 
