@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { RandomCell } from "./TrackerCell";
-import { TrackerLaneStyle } from './TrackerStyles';
+import { LaneStyle } from './TrackerStyles';
 
 export type TrackerLaneProps = {
 	title: string;
@@ -23,7 +23,7 @@ const TrackerLane: React.FC<TrackerLaneProps> = ({ title, handleCellClick: onHan
 	};
 
 	return (
-		<TrackerLaneStyle>
+		<LaneStyle>
 			<div className="title">{title}</div>
 			<div className="steps">
 				{steps.map((step, index) => (
@@ -34,7 +34,7 @@ const TrackerLane: React.FC<TrackerLaneProps> = ({ title, handleCellClick: onHan
 					/>
 				))}
 			</div>
-		</TrackerLaneStyle>
+		</LaneStyle>
 	);
 };
 
