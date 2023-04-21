@@ -5,7 +5,7 @@ type RootLayoutProps = {
 };
 
 const metadata = {
-	title: 'oinori Tracker',
+	title: 'oinori Page',
 	description: 'lets pray!',
 };
 
