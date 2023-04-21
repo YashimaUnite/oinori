@@ -24,7 +24,7 @@ export const CellStyle = styled.div<{ selected: boolean }>`
     `}
 `;
 
-export const TrackerLaneStyle = styled.div`
+export const LaneStyle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
