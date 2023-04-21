@@ -1,11 +1,14 @@
-import React from 'react';
+"use strict";
 
-import Terminal from "@/components/terminal/Terminal";
+import * as React from 'react';
 
-const Home = () => {
+import Tracker from './components/tracker/Tracker';
+
+const Home: React.FC = () => {
 	return (
 		<div>
-			<Terminal />
+			<h1>oinori Tracker.</h1>
+				<Tracker />
 		</div>
 	);
 };
