@@ -1,41 +1,31 @@
-"use client";
+'use client';
 
-import React, { createContext, useState } from 'react';
+import {z} from 'zod';
 
-import Grid from './TrackerGrid';
+import Grid from './Grid';
+import Lane from './Lane';
+import TrackerStyle from './TrackerStyle';
 
-export type TrackerData = {
-	steps: string[][];
-	titles: string[];
-};
+const trackerSchema = z.object({
+	numCols: z.number(),
+	numRows: z.number(),
+	songID: z.number(),
+});
 
-export const TrackerDataContext = createContext<TrackerData | null>(null);
+type TrackerProps = z.infer<typeof trackerSchema>;
 
-const defaultData: TrackerData = {
-	steps: [['Step 1', 'Step 2', 'Step 3', "Step 4"],['Step 1', 'Step 2', 'Step 3', "Step 4"],['Step 1', 'Step 2', 'Step 3', "Step 4"],['Step 1', 'Step 2', 'Step 3', "Step 4"],['Step 1', 'Step 2', 'Step 3', "Step 4"],['Step 1', 'Step 2', 'Step 3', "Step 4"],['Step 1', 'Step 2', 'Step 3', "Step 4"],['Step 1', 'Step 2', 'Step 3', "Step 4"],['Step 1', 'Step 2', 'Step 3', "Step 4"],['Step 1', 'Step 2', 'Step 3', "Step 4"]],
-	titles: ['Lane 1', 'Lane 2', 'Lane 3', 'Lane 4', 'Lane 5', 'Lane 6', 'Lane 7', 'Lane 8'],
-};
-
-
-const Tracker: React.FC = () => {
-	const [data, setData] = useState<TrackerData>(defaultData);
-
-	const handleStepClick = (laneIndex: number, stepIndex: number) => {
-		// TrackerDataの更新
-		setData((prevData) => {
-			const newSteps = [...prevData.steps];
-			newSteps[laneIndex][stepIndex] = 'DONE';
-			return {
-				...prevData,
-				steps: newSteps,
-			};
-		});
-	};
-
+const Tracker: React.FC<TrackerProps> = ({numCols, numRows, songID}) => {
+	const gridProps = {gridID: songID, numCols, numRows};
+	const lanes = [];
+	for (let i = 1; i <= 8; i++) {
+		const laneProps = {laneID: i, numCols, numRows, pitch: ''};
+		lanes.push(<Lane key={i} {...laneProps} />);
+	}
 	return (
-		<TrackerDataContext.Provider value={data}>
-			<Grid onStepClick={handleStepClick} steps={data.steps} titles={data.titles} />
-		</TrackerDataContext.Provider>
+		<TrackerStyle>
+			<Grid {...gridProps} />
+			{lanes}
+		</TrackerStyle>
 	);
 };
 

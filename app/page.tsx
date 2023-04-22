@@ -1,14 +1,15 @@
-"use strict";
+'use client';
 
-import * as React from 'react';
+import React from 'react';
 
 import Tracker from './components/tracker/Tracker';
 
+type HomeProps = {};
+
 const Home: React.FC = () => {
 	return (
-		<div>
-			<h1>oinori Tracker.</h1>
-				<Tracker />
+		<div className="Home">
+			<Tracker numCols={80} numRows={200} songID={0} />
 		</div>
 	);
 };

@@ -9,16 +9,14 @@ const metadata = {
 	description: 'lets pray!',
 };
 
-const RootLayout = ({ children }: RootLayoutProps) => {
+const RootLayout = ({children}: RootLayoutProps) => {
 	return (
 		<html lang="ja">
-		<head>
-			<title>{metadata.title}</title>
-			<meta name="description" content={metadata.description} />
-		</head>
-		<body>
-			{children}
-		</body>
+			<head>
+				<title>{metadata.title}</title>
+				<meta name="description" content={metadata.description} />
+			</head>
+			<body>{children}</body>
 		</html>
 	);
 };

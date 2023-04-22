@@ -1,7 +1,7 @@
 on:
   push:
     branches-ignore:
-      - "develop"
+      - 'develop'
 name: Build and Test on Push
 jobs:
   build:
