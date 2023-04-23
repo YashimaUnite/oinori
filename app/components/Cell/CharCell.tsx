@@ -1,41 +1,35 @@
 import React from 'react';
 import seedrandom from 'seedrandom';
-import {z} from 'zod';
 
-import {CharCellStyle} from './CharCellStyle';
+import Cell, { CellProps } from "@/components/Cell/Cell";
 
-const chars = ['♡', '+', '=', '.', '@', '*', 'o', 'i'] as const;
-const charCellSchema = z.enum(chars);
+export const chars = ['♡', '+', '=', '.', '@', '*', 'o', 'i'] as const;
+type CharCellType = typeof chars[number];
 
-type CharChars = z.infer<typeof charCellSchema>;
-
-const CharGridPropsSchema = z.object({
-	numCols: z.number(),
-	numRows: z.number(),
-	seed: z.string(),
-});
-
-export type CharGridProps = z.infer<typeof CharGridPropsSchema>;
-
-const CharCell: React.FC<CharGridProps> = ({
-	numCols,
-	numRows,
-	seed,
-}: CharGridProps) => {
-	const renderCharType = genRandomSymbol(seed);
-	return (
-		<CharCellStyle numRows={numRows} numCols={numCols} seed={seed}>
-			<div className="CharCell" style={{gridColumn: numCols, gridRow: numRows}}>
-				<span>{renderCharType}</span>
-			</div>
-		</CharCellStyle>
-	);
+export type CharCellData = {
+	seed: string;
 };
 
-const genRandomSymbol = (seed: string): string => {
+export type CharCellProps = CellProps<CharCellData> & {
+	charCellData: CharCellData;
+};
+
+const genRandomSymbol = (seed: string): CharCellType => {
 	const rng = seedrandom(seed);
 	const randomIndex = Math.floor(rng() * chars.length);
 	return chars[randomIndex];
 };
+
+const CharCell: React.FC<CharCellProps> = ({ charCellData, ...rest }) => {
+	const { seed } = charCellData;
+	const char = genRandomSymbol(seed);
+	return (
+		<Cell
+			{...rest}
+		>
+			<div>{char}</div>
+		</Cell>
+	);
+}
 
 export default CharCell;

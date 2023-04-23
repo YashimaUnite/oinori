@@ -21,7 +21,7 @@ const Index = ()=>{
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                children: "oinori tracker."
+                children: "oinori Tracker."
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_TerminalUI__WEBPACK_IMPORTED_MODULE_1__["default"], {})
         ]
