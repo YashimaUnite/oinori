@@ -1,35 +1,39 @@
-import {z} from 'zod';
+import React from 'react';
 
-const tones = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-const octaves = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+import Cell, {CellProps} from '@/components/Cell/Cell';
 
+export const tones = [
+	'C',
+	'C#',
+	'D',
+	'D#',
+	'E',
+	'F',
+	'F#',
+	'G',
+	'G#',
+	'A',
+	'A#',
+	'B',
+] as const;
+export const octaves = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 export type Pitch = `${(typeof tones)[number]}${(typeof octaves)[number]}`;
 
-const toneGridPropsSchema = z.object({
-	numCols: z.number(),
-	numRows: z.number(),
-	pitch: z
-		.string()
-		.refine(
-			s =>
-				tones.includes(s.slice(0, -1)) && octaves.includes(Number(s.slice(-1))),
-			{
-				message: 'Invalid pitch',
-			},
-		),
-});
+export type ToneCellData = {
+	pitch: Pitch;
+};
 
-export type ToneGridProps = z.infer<typeof toneGridPropsSchema>;
+export type ToneCellProps = CellProps<ToneCellData> & {
+	pitch: Pitch;
+	toneCellData: ToneCellData;
+};
 
-const ToneCell: React.FC<ToneGridProps> = ({
-	numCols,
-	numRows,
-	pitch,
-}: ToneGridProps) => {
+const ToneCell: React.FC<ToneCellProps> = ({toneCellData, ...rest}) => {
+	const {pitch} = toneCellData;
 	return (
-		<div className="ToneCell" style={{gridColumn: numCols, gridRow: numRows}}>
-			<span>{pitch}</span>
-		</div>
+		<Cell {...rest}>
+			<div>{pitch}</div>
+		</Cell>
 	);
 };
 
